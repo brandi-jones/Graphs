@@ -86,10 +86,14 @@ while not allPathsExplored:
     nextDirection = ''
 
     #find the unknown direction for the current room, if there exists one
-    for key, value in graph[player.current_room.id].items():
-        if value == '?':
-            nextDirection = key
-            break
+    # for key, value in graph[player.current_room.id].items():
+    #     if value == '?':
+    #         nextDirection = key
+    #         break
+
+    directionsUnknown = [k for k, v in graph[player.current_room.id].items() if v == '?']  
+    if directionsUnknown:
+        nextDirection = random.choice(directionsUnknown)
 
 
     #if next direction is empty, meaning there was no unknown direction in current room
